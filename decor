@@ -1,0 +1,5 @@
+#!/bin/sh
+case "$1" in
+	on | 1 | y) sed -i 's|<decor>no</decor>|<decor>yes</decor>|' ~/.config/openbox/rc.xml | openbox --reconfigure ;;
+	off | 0| n) sed -i 's|<decor>yes</decor>|<decor>no</decor>|' ~/.config/openbox/rc.xml | openbox --reconfigure ;;
+esac
