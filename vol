@@ -1,0 +1,2 @@
+#!/bin/sh
+dunstify -h int:value:$(amixer sget Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g') 'Vol : '$(amixer sget Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')'%'
