@@ -1,0 +1,6 @@
+#!/bin/sh
+# nm = nightmode for short 
+case "$1" in
+	1 | y | yes | Y) redshift -P -O 1700;brightnessctl s 1%;clear ;;
+	0 | n | no | N) redshift -x;brightnessctl s 25%;clear ;;
+esac
