@@ -13,6 +13,9 @@ if [ -z "$version" ]; then
   exit 1
 fi
 
+mkdir -p ~/.appimage/
+echo "Downloading ungoogled-chromium $version"
+
 # Download the AppImage
 wget "https://github.com/ungoogled-software/ungoogled-chromium-portablelinux/releases/download/$version/ungoogled-chromium_$version.AppImage" -O ~/.appimage/ungoogled-chromium.AppImage
 
