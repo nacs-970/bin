@@ -1,2 +1,23 @@
 #!/bin/sh
-wget "$(curl https://ungoogled-software.github.io/ungoogled-chromium-binaries/|curl "https://ungoogled-software.github.io/$(curl https://ungoogled-software.github.io/ungoogled-chromium-binaries/| grep -Eo "/ungoogled-chromium-binaries/releases/appimage/64bit/[^\"]+")"|grep -Eo "https://github.com/clickot/ungoogled-chromium-binaries/releases/download/[^\"]+")";yes|mv ungoogled-chromium_* ~/.appimage/ungoogled-chromium.AppImage;chmod +x ~/.appimage/ungoogled-chromium.AppImage
+
+#wget "https://github.com/ungoogled-software/ungoogled-chromium-portablelinux/releases/download/$(version)/ungoogled-chromium_$(version).AppImage";yes|mv ungoogled-chromium_* ~/.appimage/ungoogled-chromium.AppImage;chmod +x ~/.appimage/ungoogled-chromium.AppImage
+#wget "$(curl https://ungoogled-software.github.io/ungoogled-chromium-binaries/|curl "https://ungoogled-software.github.io/$(curl https://ungoogled-software.github.io/ungoogled-chromium-binaries/| grep -Eo "/ungoogled-chromium-binaries/releases/appimage/64bit/[^\"]+")"|grep -Eo "https://github.com/clickot/ungoogled-chromium-binaries/releases/download/[^\"]+")";yes|mv ungoogled-chromium_* ~/.appimage/ungoogled-chromium.AppImage;chmod +x ~/.appimage/ungoogled-chromium.AppImage
+
+# Fetch the latest version
+version=$(curl -s "https://ungoogled-software.github.io/ungoogled-chromium-binaries/releases/appimage/64bit/" | grep "ungoogled-chromium-binaries/releases/appimage/64bit/" | head -n 1 | cut -d \> -f3 | cut -d \< -f1)
+#version=$(curl -s "https://ungoogled-software.github.io/ungoogled-chromium-binaries/releases/appimage/64bit/" | grep -oP 'ungoogled-chromium_.*?\.AppImage' | head -n 1 | grep -oP '(\d+\.\d+\.\d+.*)')
+
+# Check if version was found
+if [ -z "$version" ]; then
+  echo "Version not found."
+  exit 1
+fi
+
+# Download the AppImage
+wget "https://github.com/ungoogled-software/ungoogled-chromium-portablelinux/releases/download/$version/ungoogled-chromium_$version.AppImage" -O ~/.appimage/ungoogled-chromium.AppImage
+
+# Make it executable
+chmod +x ~/.appimage/ungoogled-chromium.AppImage
+
+echo "Downloaded and set up ungoogled Chromium version $version."
+
