@@ -1,0 +1,20 @@
+#!/bin/sh
+
+name=$(nmcli connection | head -n 2 | tail -n 1 | cut -d " " -f1)
+wifi_names=(@JumboPlus5GHz @JumboPlus @JumboPlusIoT ~∆~)
+
+found=false
+
+for wifi in "${wifi_names[@]}"; do
+  if [[ "$name" == "$wifi" ]]; then
+    found=true
+    break
+  fi
+done
+
+if $found; then
+  notify-send "Retrying connection to $wifi"
+  nmcli device wifi connect "$wifi"
+else
+  notify-send "Can't find a known Wi-Fi network"
+fi
