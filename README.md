@@ -2,6 +2,7 @@
 
 chmod +x file
 
+in your .shell file
 ```bash
 export PATH=$HOME/.local/bin:$PATH
 ```
