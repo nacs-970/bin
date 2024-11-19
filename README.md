@@ -1,7 +1,10 @@
-#My personal shell scripts
+# My personal shell scripts
 
 chmod +x file
-path = export PATH=$HOME/.local/bin:$PATH
+
+```bash
+export PATH=$HOME/.local/bin:$PATH
+```
 
 list of shell scripts :
 - decor <on/1/y or off/0/n> : turn on/off openbox decor
